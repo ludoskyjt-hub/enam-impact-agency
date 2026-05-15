@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "_comment": "MelodiaPerTe — melodiaperte.enamimpactagency.com",
+  "buildCommand": "cd ../.. && pnpm install --frozen-lockfile && pnpm --filter @workspace/melodia exec vite build --config vite.config.prod.ts",
+  "outputDirectory": "artifacts/melodia/dist",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": null,
+  "env": { "BASE_PATH": "/" },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://api.enamimpactagency.com/api/:path*" }
+  ],
+  "headers": [
+    { "source": "/sw.js", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+      { "key": "Service-Worker-Allowed", "value": "/" }
+    ]},
+    { "source": "/(.*)\\.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]}
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
