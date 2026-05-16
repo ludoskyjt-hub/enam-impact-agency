@@ -20,7 +20,6 @@ import notificationsRouter from "./notifications";
 import recurringRouter from "./recurring";
 import importRouter from "./import";
 import boutikoRouter from "./boutiko";
-import melodiaRouter from "./melodia";
 
 const router: IRouter = Router();
 
@@ -45,6 +44,5 @@ router.use(notificationsRouter);
 router.use(recurringRouter);
 router.use(importRouter);
 router.use(boutikoRouter);
-router.use(melodiaRouter);
 
 export default router;
