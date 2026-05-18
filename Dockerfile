@@ -1,27 +1,22 @@
 FROM node:20-alpine
 
-# Installer pnpm via corepack
+# Installer pnpm
 RUN corepack enable && corepack prepare pnpm@9 --activate
 
 WORKDIR /app
 
-# Copier les fichiers de config workspace
-COPY package.json pnpm-workspace.yaml ./
-COPY tsconfig.base.json tsconfig.json ./
+# Copier TOUT le code (nécessaire pour le workspace pnpm)
+COPY . .
 
-# Copier les libs
-COPY lib/ ./lib/
-
-# Copier lapi-server
-COPY artifacts/api-server/ ./artifacts/api-server/
-
-# Installer les dépendances
+# Installer TOUTES les dépendances (production uniquement pour légèreté)
 RUN pnpm install --no-frozen-lockfile
 
-# Builder lapi-server
+# Builder uniquement l'api-server
 RUN pnpm --filter @workspace/api-server run build
 
-# Variables runtime
+# Nettoyer les devDependencies pour réduire la taille
+RUN pnpm prune --prod
+
 ENV NODE_ENV=production
 
 EXPOSE 8080
