@@ -12,7 +12,7 @@ const externalPackages = [
   "bcryptjs",
   "cookie-parser",
   "cors",
-  "drizzle-orm",
+  
   "express",
   "multer",
   "openai",
@@ -26,8 +26,8 @@ const externalPackages = [
   "ws",
   "@trpc/server",
   "superjson",
-  "pg",
-  "drizzle-zod",
+  
+  
 ];
 
 await esbuild.build({
