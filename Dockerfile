@@ -15,4 +15,4 @@ ENV NODE_PATH=/app/node_modules
 
 EXPOSE 8080
 
-CMD ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
+CMD ["node", "--enable-source-maps", "artifacts/api-server/dist/index.cjs"]
