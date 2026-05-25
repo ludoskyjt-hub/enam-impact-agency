@@ -5,20 +5,19 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 
 WORKDIR /app
 
-# Copier TOUT le code (nécessaire pour le workspace pnpm)
+# Copier tout le code source
 COPY . .
 
-# Installer TOUTES les dépendances (production uniquement pour légèreté)
+# Installer TOUTES les dépendances (prod + dev requis pour le build)
 RUN pnpm install --no-frozen-lockfile
 
-# Builder uniquement l'api-server
+# Builder uniquement api-server
 RUN pnpm --filter @workspace/api-server run build
 
-# Nettoyer les devDependencies pour réduire la taille
-RUN pnpm prune --prod
-
+# NE PAS faire pnpm prune -- pg et autres modules runtime doivent rester
 ENV NODE_ENV=production
 
+# Railway injecte automatiquement PORT
 EXPOSE 8080
 
 CMD ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
