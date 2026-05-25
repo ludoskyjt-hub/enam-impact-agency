@@ -6,12 +6,13 @@ WORKDIR /app
 
 COPY . .
 
-RUN pnpm install --no-frozen-lockfile
+# --shamefully-hoist force pg et tous les modules au niveau racine node_modules/
+# Cela permet à Node.js de les trouver depuis n'importe quel sous-dossier
+RUN pnpm install --no-frozen-lockfile --shamefully-hoist
 
 RUN pnpm --filter @workspace/api-server run build
 
 ENV NODE_ENV=production
-ENV NODE_PATH=/app/node_modules
 
 EXPOSE 8080
 
