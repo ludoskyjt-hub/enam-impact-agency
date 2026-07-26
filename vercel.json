@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://function-bun-production-8308.up.railway.app/api/:path*"
+      "destination": "https://enam-impact-agency-api.onrender.com/api/:path*"
     },
     {
       "source": "/((?!api).*)",
