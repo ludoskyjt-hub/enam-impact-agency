@@ -15,6 +15,7 @@ const externalPackages = [
   "multer",
   "openai",
   "pdf-parse",
+  "pdf-parse/*",
   "pdfkit",
   "pino",
   "pino-http",

@@ -16,6 +16,10 @@ import {
   createOpsUser, verifyOpsPassword, getOpsUserByEmail, updateOpsUserPassword,
 } from "./db";
 
+// Usamos o subcaminho interno (não o index.js) para evitar o "modo debug" do
+// pdf-parse@1.1.1, que tenta ler um PDF de teste quando module.parent é indefinido
+// (o que acontece em contextos ESM/bundled). Formato de build aqui é CJS, então
+// o require nativo já está disponível.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const pdfParse = require("pdf-parse/lib/pdf-parse") as (buffer: Buffer) => Promise<{ text: string; numpages: number }>;
 
