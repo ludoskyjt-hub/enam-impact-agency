@@ -41,6 +41,22 @@ app.use(
   createExpressMiddleware({
     router: appOpsRouter,
     createContext: createOpsContext,
+    onError({ error, path, type, input }) {
+      logger.error(
+        {
+          path,
+          type,
+          input,
+          errMessage: error.message,
+          errCode: error.code,
+          cause: error.cause instanceof Error
+            ? { message: error.cause.message, name: error.cause.name, stack: error.cause.stack }
+            : error.cause,
+          stack: error.stack,
+        },
+        "trpc ops error"
+      );
+    },
   })
 );
 
