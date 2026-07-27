@@ -5,8 +5,8 @@ let openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
   if (!openai) {
     openai = new OpenAI({
-      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY ?? "missing-api-key",
+      baseURL: process.env.OPENAI_BASE_URL,
+      apiKey: process.env.OPENAI_API_KEY ?? "missing-api-key",
     });
   }
   return openai;
