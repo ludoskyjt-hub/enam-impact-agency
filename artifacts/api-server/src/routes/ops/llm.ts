@@ -9,7 +9,7 @@ function getGenAI(): GoogleGenAI {
   return genai;
 }
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.5-flash-lite";
 
 export type LLMMessage = { role: "system" | "user" | "assistant"; content: string };
 
